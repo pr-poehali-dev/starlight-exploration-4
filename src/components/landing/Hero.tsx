@@ -1,10 +1,20 @@
 import { motion } from "framer-motion"
-import { ArrowRight } from "lucide-react"
+import { ArrowRight, Copy, Check } from "lucide-react"
 import AnimatedButton from "./AnimatedButton"
 import CountingStats from "./CountingStats"
 import { cn } from "@/lib/utils"
+import { useState } from "react"
 
 export default function Hero() {
+  const [copied, setCopied] = useState(false)
+  const serverIP = "play.zerotime.ru"
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(serverIP)
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2000)
+  }
+
   const stats = [
     { value: 100, suffix: "+", label: "Игроков онлайн" },
     { value: 99, suffix: "%", label: "Аптайм сервера" },
@@ -86,14 +96,31 @@ export default function Hero() {
               transition={{ duration: 0.6, delay: 0.8 }}
               className="flex flex-col gap-6 items-center justify-center lg:justify-start lg:items-start"
             >
-              <a href="#get-started">
-                <AnimatedButton variant="slim" className="bg-green-500 text-black hover:bg-green-400">
-                  <span className="flex items-center">
-                    Начать играть
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </span>
-                </AnimatedButton>
-              </a>
+              <div className="flex flex-col sm:flex-row items-center gap-4">
+                <a href="#get-started">
+                  <AnimatedButton variant="slim" className="bg-green-500 text-black hover:bg-green-400">
+                    <span className="flex items-center">
+                      Начать играть
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </span>
+                  </AnimatedButton>
+                </a>
+
+                <motion.button
+                  onClick={handleCopy}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.97 }}
+                  className="flex items-center gap-3 px-5 py-3 bg-gray-900/80 border border-green-500/40 rounded-xl backdrop-blur-sm hover:border-green-400/70 transition-all duration-200 group"
+                >
+                  <div className="flex flex-col items-start">
+                    <span className="text-xs text-gray-400">IP сервера</span>
+                    <span className="text-sm font-minecraft text-green-400 leading-tight">{serverIP}</span>
+                  </div>
+                  <div className={cn("w-8 h-8 rounded-lg flex items-center justify-center transition-all duration-200", copied ? "bg-green-500" : "bg-gray-800 group-hover:bg-green-500/20")}>
+                    {copied ? <Check className="w-4 h-4 text-white" /> : <Copy className="w-4 h-4 text-gray-400 group-hover:text-green-400" />}
+                  </div>
+                </motion.button>
+              </div>
 
               <div className="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-6">
                 <div className="flex items-center space-x-3">

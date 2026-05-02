@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils"
 
 export default function Hero() {
   const stats = [
-    { value: 1000, suffix: "+", label: "Игроков онлайн" },
+    { value: 100, suffix: "+", label: "Игроков онлайн" },
     { value: 99, suffix: "%", label: "Аптайм сервера" },
     { value: 24, suffix: "/7", label: "Поддержка" },
   ]

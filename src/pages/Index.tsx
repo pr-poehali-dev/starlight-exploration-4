@@ -22,7 +22,6 @@ export default function Index() {
       <div className="relative z-10">
         <Navbar />
         <Hero />
-        <HowWeWork />
         <InnovativeServices />
         <ROICalculatorHome />
         <AnimatedFooter />

@@ -61,7 +61,7 @@ export default function Navbar() {
                   Режимы
                 </a>
                 <a href="#how-to-play" className="text-sm text-gray-300 hover:text-emerald-400 transition-colors">
-                  Как играть
+                  Купить донат
                 </a>
                 <a href="#stats" className="text-sm text-gray-300 hover:text-lime-400 transition-colors">
                   Сервер
@@ -96,7 +96,7 @@ export default function Navbar() {
                 Режимы
               </a>
               <a href="#how-to-play" className="block text-gray-300 hover:text-emerald-400">
-                Как играть
+                Купить донат
               </a>
               <a href="#stats" className="block text-gray-300 hover:text-lime-400">
                 Сервер

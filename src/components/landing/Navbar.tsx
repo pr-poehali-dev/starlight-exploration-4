@@ -61,7 +61,7 @@ export default function Navbar() {
                 <a href="#services" className="text-sm text-gray-300 hover:text-green-400 transition-colors">
                   Режимы
                 </a>
-                <Link to="/donate" className="text-sm text-gray-300 hover:text-emerald-400 transition-colors">
+                <Link to="/servers" className="text-sm text-gray-300 hover:text-emerald-400 transition-colors">
                   Купить донат
                 </Link>
                 <a href="#stats" className="text-sm text-gray-300 hover:text-lime-400 transition-colors">
@@ -96,7 +96,7 @@ export default function Navbar() {
               <a href="#services" className="block text-gray-300 hover:text-green-400">
                 Режимы
               </a>
-              <Link to="/donate" className="block text-gray-300 hover:text-emerald-400">
+              <Link to="/servers" className="block text-gray-300 hover:text-emerald-400">
                 Купить донат
               </Link>
               <a href="#stats" className="block text-gray-300 hover:text-lime-400">

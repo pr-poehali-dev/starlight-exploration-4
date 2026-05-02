@@ -1,77 +1,73 @@
 import { motion } from "framer-motion"
 import { useState } from "react"
-import { Check, Crown, Shield, Swords, ArrowLeft } from "lucide-react"
+import { Check, Crown, Zap, GraduationCap, ArrowLeft } from "lucide-react"
 import { Link } from "react-router-dom"
 import AnimatedButton from "@/components/landing/AnimatedButton"
 import { BackgroundPaths, AnimatedBackground, BackgroundStripes, Navbar, MouseMoveEffect } from "@/components/landing"
 
 const packages = [
   {
-    id: "angel",
-    name: "Ангел",
-    price: 798,
-    color: "from-pink-500/20 to-rose-600/10",
-    border: "border-pink-500/30 hover:border-pink-400/60",
-    accent: "text-pink-400",
-    badge: "bg-pink-500/20 text-pink-300",
-    glow: "rgba(236, 72, 153, 0.15)",
-    icon: <Swords className="w-8 h-8" />,
-    description: "Для тех, кто любит острые ощущения — грифинг и PvP без ограничений.",
+    id: "magistr",
+    name: "Магистр",
+    price: 600,
+    color: "from-cyan-500/20 to-cyan-600/10",
+    border: "border-cyan-500/30 hover:border-cyan-400/60",
+    accent: "text-cyan-400",
+    glow: "rgba(6, 182, 212, 0.15)",
+    icon: <GraduationCap className="w-8 h-8" />,
+    description: "Уникальная привилегия с правом выдавать кик нарушителям порядка на сервере.",
     features: [
-      "Право на грифинг игроков",
-      "Усиленный PvP урон",
-      "Доступ на PvP-зоны",
-      "Уникальный ник [Ангел]",
-      "Особый скин плаща",
+      "Право выдавать /kick нарушителям",
+      "Уникальный ник [Магистр]",
+      "Доступ к каналу модераторов",
       "Приоритетный вход на сервер",
+      "Особый цвет ника в чате",
     ],
   },
   {
-    id: "zero",
-    name: "Zero",
-    price: 869,
-    color: "from-blue-500/20 to-cyan-600/10",
-    border: "border-blue-500/30 hover:border-blue-400/60",
-    accent: "text-blue-400",
-    badge: "bg-blue-500/20 text-blue-300",
-    glow: "rgba(59, 130, 246, 0.15)",
-    icon: <Shield className="w-8 h-8" />,
-    description: "Защити сервер — уникальная привилегия для борьбы с грифинг-нарушителями.",
+    id: "fantom",
+    name: "Фантом",
+    price: 800,
+    color: "from-purple-500/20 to-violet-600/10",
+    border: "border-purple-500/30 hover:border-purple-400/60",
+    accent: "text-purple-400",
+    glow: "rgba(147, 51, 234, 0.15)",
+    icon: <Zap className="w-8 h-8" />,
+    description: "Уникальная привилегия с доступом ко всем китам на сервере в любое время.",
     features: [
-      "Право наказывать грифиров",
-      "Откат разрушений гриферов",
-      "Защита своих территорий",
-      "Уникальный ник [Zero]",
-      "Доступ к /ban и /kick",
+      "Доступ ко всем китам сервера",
+      "Неограниченное использование китов",
+      "Уникальный ник [Фантом]",
+      "Невидимость в режиме ожидания",
       "Приоритетный вход на сервер",
+      "Особый эффект при входе",
     ],
     popular: true,
   },
   {
-    id: "dadmin",
-    name: "Д.Админ",
-    price: 900,
-    color: "from-green-500/20 to-emerald-600/10",
-    border: "border-green-500/30 hover:border-green-400/60",
-    accent: "text-green-400",
-    badge: "bg-green-500/20 text-green-300",
-    glow: "rgba(34, 197, 94, 0.15)",
+    id: "ender",
+    name: "Эндер",
+    price: 1100,
+    color: "from-indigo-500/20 to-purple-600/10",
+    border: "border-indigo-500/30 hover:border-indigo-400/60",
+    accent: "text-indigo-400",
+    glow: "rgba(99, 102, 241, 0.15)",
     icon: <Crown className="w-8 h-8" />,
-    description: "Максимальный донат с абсолютно всеми возможностями сервера.",
+    description: "Максимальный донат с иммунитетом к банам, мутам и кикам. Все возможности сервера.",
     features: [
-      "Все возможности сервера",
-      "Все привилегии Zero + Ангел",
-      "Полный доступ к командам",
-      "Уникальный ник [Д.Админ]",
+      "Иммунитет к банам и мутам",
+      "Иммунитет к кикам",
+      "Все привилегии Фантом + Магистр",
+      "Полный доступ ко всем командам",
+      "Уникальный ник [Эндер]",
       "Кастомный префикс в чате",
-      "Невидимость и полёт",
       "Доступ к закрытым локациям",
       "VIP-поддержка 24/7",
     ],
   },
 ]
 
-export default function Donate() {
+export default function DonateSkynet() {
   const [selected, setSelected] = useState<string | null>(null)
 
   return (
@@ -109,20 +105,20 @@ export default function Donate() {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-green-500/20 via-emerald-500/20 to-lime-500/20 border border-green-400/30 rounded-full text-sm text-white font-medium backdrop-blur-sm mb-6"
+              className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-purple-500/20 via-violet-500/20 to-indigo-500/20 border border-purple-400/30 rounded-full text-sm text-white font-medium backdrop-blur-sm mb-6"
             >
-              <div className="w-2 h-2 bg-green-400 rounded-full mr-3 animate-pulse"></div>
-              <span>Поддержи сервер и получи привилегии</span>
+              <div className="w-2 h-2 bg-purple-400 rounded-full mr-3 animate-pulse"></div>
+              <span>🛸 Сервер SkyNet</span>
             </motion.div>
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6">
               Донат-пакеты{" "}
-              <span className="bg-gradient-to-r from-green-400 via-emerald-400 to-lime-400 bg-clip-text text-transparent">
-                ZeroTime
+              <span className="bg-gradient-to-r from-purple-400 via-violet-400 to-indigo-400 bg-clip-text text-transparent">
+                SkyNet
               </span>
             </h1>
             <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-              Выбери свой стиль игры и получи уникальные возможности на сервере
+              Выбери привилегию и возьми максимум от игры на SkyNet
             </p>
           </motion.div>
 
@@ -136,14 +132,14 @@ export default function Donate() {
                 transition={{ duration: 0.6, delay: index * 0.15 }}
                 whileHover={{ y: -8 }}
                 onClick={() => setSelected(pkg.id)}
-                className={`relative bg-gradient-to-br ${pkg.color} border ${pkg.border} rounded-3xl p-8 cursor-pointer transition-all duration-300 ${selected === pkg.id ? "ring-2 ring-offset-2 ring-offset-black ring-green-500" : ""}`}
+                className={`relative bg-gradient-to-br ${pkg.color} border ${pkg.border} rounded-3xl p-8 cursor-pointer transition-all duration-300 ${selected === pkg.id ? "ring-2 ring-offset-2 ring-offset-black ring-purple-500" : ""}`}
                 style={{
                   boxShadow: selected === pkg.id ? `0 0 40px ${pkg.glow}` : undefined,
                 }}
               >
                 {pkg.popular && (
                   <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-                    <span className="px-4 py-1.5 bg-blue-500 text-white text-xs font-bold rounded-full uppercase tracking-wide">
+                    <span className="px-4 py-1.5 bg-purple-500 text-white text-xs font-bold rounded-full uppercase tracking-wide">
                       Популярный
                     </span>
                   </div>
@@ -171,7 +167,7 @@ export default function Donate() {
                 </ul>
 
                 <AnimatedButton
-                  className={`w-full ${selected === pkg.id ? "bg-green-500 text-black hover:bg-green-400" : "bg-gray-800 text-white hover:bg-gray-700"}`}
+                  className={`w-full ${selected === pkg.id ? "bg-purple-500 text-white hover:bg-purple-400" : "bg-gray-800 text-white hover:bg-gray-700"}`}
                 >
                   {selected === pkg.id ? "Выбрано" : "Выбрать"}
                 </AnimatedButton>
@@ -190,7 +186,7 @@ export default function Donate() {
               <p className="text-gray-400 mb-4 text-sm">
                 Выбран пакет: <span className="text-white font-semibold">{packages.find(p => p.id === selected)?.name}</span> — {packages.find(p => p.id === selected)?.price} ₽
               </p>
-              <AnimatedButton className="bg-green-500 text-black hover:bg-green-400 px-12">
+              <AnimatedButton className="bg-purple-500 text-white hover:bg-purple-400 px-12">
                 Перейти к оплате
               </AnimatedButton>
             </motion.div>

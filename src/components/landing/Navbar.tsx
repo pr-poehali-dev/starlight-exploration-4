@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button"
 import { Menu, X } from "lucide-react"
 import { useState } from "react"
 import { motion } from "framer-motion"
+import { Link } from "react-router-dom"
 import AnimatedButton from "./AnimatedButton"
 
 export default function Navbar() {
@@ -60,9 +61,9 @@ export default function Navbar() {
                 <a href="#services" className="text-sm text-gray-300 hover:text-green-400 transition-colors">
                   Режимы
                 </a>
-                <a href="#how-to-play" className="text-sm text-gray-300 hover:text-emerald-400 transition-colors">
+                <Link to="/donate" className="text-sm text-gray-300 hover:text-emerald-400 transition-colors">
                   Купить донат
-                </a>
+                </Link>
                 <a href="#stats" className="text-sm text-gray-300 hover:text-lime-400 transition-colors">
                   Сервер
                 </a>
@@ -95,9 +96,9 @@ export default function Navbar() {
               <a href="#services" className="block text-gray-300 hover:text-green-400">
                 Режимы
               </a>
-              <a href="#how-to-play" className="block text-gray-300 hover:text-emerald-400">
+              <Link to="/donate" className="block text-gray-300 hover:text-emerald-400">
                 Купить донат
-              </a>
+              </Link>
               <a href="#stats" className="block text-gray-300 hover:text-lime-400">
                 Сервер
               </a>

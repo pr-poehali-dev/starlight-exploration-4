@@ -1,60 +1,53 @@
 import { motion } from "framer-motion"
 import { useState } from "react"
-import { TrendingUp, Target, Briefcase, Palette, Home, BarChart3 } from "lucide-react"
+import { TrendingUp, Target, Swords, TreePine, Hammer, BarChart3 } from "lucide-react"
 
-const businessTypes = [
+const playerTypes = [
   {
-    id: "retail",
-    name: "Ритейл",
-    icon: <Briefcase className="w-6 h-6" />,
-    multiplier: 3.2,
-    description: "E-commerce и магазины",
+    id: "survival",
+    name: "Выживание",
+    icon: <TreePine className="w-6 h-6" />,
+    description: "Исследование и крафт",
+    hours: 3,
+    events: 12,
   },
   {
-    id: "real-estate",
-    name: "Недвижимость",
-    icon: <Home className="w-6 h-6" />,
-    multiplier: 4.1,
-    description: "Агенты и управление",
+    id: "pvp",
+    name: "PvP",
+    icon: <Swords className="w-6 h-6" />,
+    description: "Арены и битвы",
+    hours: 4,
+    events: 20,
   },
   {
-    id: "artist",
-    name: "Креатив",
-    icon: <Palette className="w-6 h-6" />,
-    multiplier: 2.8,
-    description: "Блогеры и артисты",
+    id: "creative",
+    name: "Творчество",
+    icon: <Hammer className="w-6 h-6" />,
+    description: "Строительство",
+    hours: 2,
+    events: 5,
   },
   {
-    id: "professional",
-    name: "B2B услуги",
+    id: "all",
+    name: "Всё сразу",
     icon: <Target className="w-6 h-6" />,
-    multiplier: 3.7,
-    description: "Консалтинг и сервисы",
+    description: "Без ограничений",
+    hours: 6,
+    events: 30,
   },
 ]
 
-// Функция форматирования чисел с пробелами (русская локаль)
-const formatRub = (num: number) => {
-  return num.toLocaleString('ru-RU')
-}
-
 export default function ROICalculatorHome() {
-  // Бюджет в рублях (100 000 - 2 500 000)
-  const [selectedBudget, setSelectedBudget] = useState(500000)
-  const [selectedBusiness, setSelectedBusiness] = useState("retail")
+  const [selectedDays, setSelectedDays] = useState(5)
+  const [selectedType, setSelectedType] = useState("survival")
 
-  const selectedBusinessType = businessTypes.find((b) => b.id === selectedBusiness)
-  const multiplier = selectedBusinessType?.multiplier || 3.2
+  const selectedPlayerType = playerTypes.find((b) => b.id === selectedType)
+  const hoursPerDay = selectedPlayerType?.hours || 3
+  const eventsPerMonth = selectedPlayerType?.events || 12
 
-  const calculateROI = (budget: number) => {
-    const baseReturn = budget * multiplier
-    const scaleFactor = budget / 1000000
-    return Math.round(baseReturn * (1 + scaleFactor * 0.3))
-  }
-
-  const calculateMonthlyRevenue = (budget: number) => {
-    return Math.round(calculateROI(budget) / 12)
-  }
+  const totalHours = selectedDays * hoursPerDay
+  const totalEvents = Math.round((selectedDays / 30) * eventsPerMonth)
+  const achievementsUnlocked = Math.round(totalHours * 0.8)
 
   return (
     <section className="py-24 bg-black relative backdrop-blur-sm">
@@ -66,23 +59,22 @@ export default function ROICalculatorHome() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6">Рассчитайте ROI</h2>
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6">Что тебя ждёт?</h2>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-            Узнайте, какую выручку вы можете получить с нашими маркетинговыми стратегиями
+            Посмотри, сколько приключений ты сможешь пережить на ZeroTime
           </p>
         </motion.div>
 
         <div className="bg-gray-900/40 border border-gray-700/30 rounded-3xl p-8 backdrop-blur-sm relative overflow-hidden">
-          {/* Subtle animated background */}
           <motion.div
             className="absolute inset-0 opacity-20"
             animate={{
               background: [
-                "radial-gradient(circle at 20% 20%, rgba(59,130,246,0.1) 0%, transparent 50%)",
-                "radial-gradient(circle at 80% 80%, rgba(147,51,234,0.1) 0%, transparent 50%)",
-                "radial-gradient(circle at 20% 80%, rgba(34,197,94,0.1) 0%, transparent 50%)",
-                "radial-gradient(circle at 80% 20%, rgba(249,115,22,0.1) 0%, transparent 50%)",
-                "radial-gradient(circle at 20% 20%, rgba(59,130,246,0.1) 0%, transparent 50%)",
+                "radial-gradient(circle at 20% 20%, rgba(34,197,94,0.1) 0%, transparent 50%)",
+                "radial-gradient(circle at 80% 80%, rgba(16,185,129,0.1) 0%, transparent 50%)",
+                "radial-gradient(circle at 20% 80%, rgba(132,204,22,0.1) 0%, transparent 50%)",
+                "radial-gradient(circle at 80% 20%, rgba(34,197,94,0.1) 0%, transparent 50%)",
+                "radial-gradient(circle at 20% 20%, rgba(34,197,94,0.1) 0%, transparent 50%)",
               ],
             }}
             transition={{ duration: 15, repeat: Infinity }}
@@ -91,33 +83,33 @@ export default function ROICalculatorHome() {
           <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Controls */}
             <div className="space-y-8">
-              {/* Business Type Selection */}
+              {/* Player Type Selection */}
               <div>
-                <label className="block text-lg font-medium text-white mb-4">Выберите тип бизнеса</label>
+                <label className="block text-lg font-medium text-white mb-4">Выбери свой стиль игры</label>
                 <div className="grid grid-cols-2 gap-3">
-                  {businessTypes.map((business) => (
+                  {playerTypes.map((type) => (
                     <motion.button
-                      key={business.id}
+                      key={type.id}
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
-                      onClick={() => setSelectedBusiness(business.id)}
+                      onClick={() => setSelectedType(type.id)}
                       className={`p-4 rounded-xl border transition-all duration-200 text-left ${
-                        selectedBusiness === business.id
-                          ? "bg-blue-500/20 border-blue-500/50 text-white"
+                        selectedType === type.id
+                          ? "bg-green-500/20 border-green-500/50 text-white"
                           : "bg-gray-800/50 border-gray-700/50 text-gray-300 hover:border-gray-600/50"
                       }`}
                     >
                       <div className="flex items-center space-x-3 mb-2">
                         <div
                           className={`p-2 rounded-lg ${
-                            selectedBusiness === business.id ? "bg-blue-500/30" : "bg-gray-700/50"
+                            selectedType === type.id ? "bg-green-500/30" : "bg-gray-700/50"
                           }`}
                         >
-                          {business.icon}
+                          {type.icon}
                         </div>
                         <div>
-                          <div className="font-medium">{business.name}</div>
-                          <div className="text-xs opacity-70">{business.description}</div>
+                          <div className="font-medium">{type.name}</div>
+                          <div className="text-xs opacity-70">{type.description}</div>
                         </div>
                       </div>
                     </motion.button>
@@ -125,123 +117,114 @@ export default function ROICalculatorHome() {
                 </div>
               </div>
 
-              {/* Budget Slider */}
+              {/* Days Slider */}
               <div>
-                <label className="block text-lg font-medium text-white mb-4">Месячный бюджет на маркетинг</label>
+                <label className="block text-lg font-medium text-white mb-4">Сколько дней в месяц будешь играть?</label>
                 <div className="relative">
                   <input
                     type="range"
-                    min="100000"
-                    max="2500000"
-                    step="50000"
-                    value={selectedBudget}
-                    onChange={(e) => setSelectedBudget(Number(e.target.value))}
+                    min="1"
+                    max="30"
+                    step="1"
+                    value={selectedDays}
+                    onChange={(e) => setSelectedDays(Number(e.target.value))}
                     className="w-full h-3 bg-gray-700 rounded-lg appearance-none cursor-pointer"
                     style={{
-                      background: `linear-gradient(to right, #3b82f6 0%, #3b82f6 ${((selectedBudget - 100000) / (2500000 - 100000)) * 100}%, #374151 ${((selectedBudget - 100000) / (2500000 - 100000)) * 100}%, #374151 100%)`,
+                      background: `linear-gradient(to right, #22c55e 0%, #22c55e ${((selectedDays - 1) / (30 - 1)) * 100}%, #374151 ${((selectedDays - 1) / (30 - 1)) * 100}%, #374151 100%)`,
                     }}
                   />
                   <div className="flex justify-between text-sm text-gray-400 mt-2">
-                    <span>100 тыс.</span>
-                    <span>2.5 млн</span>
+                    <span>1 день</span>
+                    <span>30 дней</span>
                   </div>
                 </div>
                 <div className="text-center mt-4">
-                  <span className="text-3xl font-bold text-white">{formatRub(selectedBudget)} &#8381;</span>
-                  <span className="text-gray-400 ml-2">в месяц</span>
+                  <span className="text-3xl font-bold text-white">{selectedDays}</span>
+                  <span className="text-gray-400 ml-2">дней в месяц</span>
                 </div>
               </div>
 
-              {/* Data Disclaimer */}
+              {/* Note */}
               <div className="bg-gray-800/30 border border-gray-700/50 rounded-xl p-4">
                 <div className="flex items-center space-x-3 mb-2">
-                  <BarChart3 className="w-5 h-5 text-blue-400" />
-                  <span className="text-sm font-medium text-white">На основе реальных данных</span>
+                  <BarChart3 className="w-5 h-5 text-green-400" />
+                  <span className="text-sm font-medium text-white">Примерный расчёт</span>
                 </div>
                 <p className="text-xs text-gray-400 leading-relaxed">
-                  Прогнозы основаны на реальных показателях наших клиентов из аналогичных
-                  отраслей и бюджетных категорий. Индивидуальные результаты могут отличаться.
+                  Расчёт основан на среднем времени сессии для каждого режима. Реальные результаты зависят от твоего стиля игры!
                 </p>
               </div>
             </div>
 
             {/* Results */}
             <div className="space-y-8">
-              {/* ROI Circle */}
+              {/* Circle */}
               <div className="relative w-48 h-48 mx-auto">
                 <svg className="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
-                  <circle
-                    cx="50"
-                    cy="50"
-                    r="35"
-                    stroke="currentColor"
-                    strokeWidth="6"
-                    fill="none"
-                    className="text-gray-700"
-                  />
+                  <circle cx="50" cy="50" r="35" stroke="currentColor" strokeWidth="6" fill="none" className="text-gray-700" />
                   <motion.circle
                     cx="50"
                     cy="50"
                     r="35"
-                    stroke="url(#gradient)"
+                    stroke="url(#gradient-green)"
                     strokeWidth="6"
                     fill="none"
                     strokeLinecap="round"
                     initial={{ strokeDasharray: "0 219.8" }}
                     animate={{
-                      strokeDasharray: `${Math.min((calculateROI(selectedBudget) / (selectedBudget * 8)) * 219.8, 219.8)} 219.8`,
+                      strokeDasharray: `${Math.min((selectedDays / 30) * 219.8, 219.8)} 219.8`,
                     }}
                     transition={{ duration: 1, ease: "easeOut" }}
                   />
                   <defs>
-                    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                      <stop offset="0%" stopColor="#3b82f6" />
-                      <stop offset="50%" stopColor="#8b5cf6" />
-                      <stop offset="100%" stopColor="#06d6a0" />
+                    <linearGradient id="gradient-green" x1="0%" y1="0%" x2="100%" y2="0%">
+                      <stop offset="0%" stopColor="#22c55e" />
+                      <stop offset="50%" stopColor="#10b981" />
+                      <stop offset="100%" stopColor="#84cc16" />
                     </linearGradient>
                   </defs>
                 </svg>
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="text-center">
                     <motion.div
-                      key={`${selectedBudget}-${selectedBusiness}`}
+                      key={`${selectedDays}-${selectedType}`}
                       initial={{ scale: 0.8, opacity: 0 }}
                       animate={{ scale: 1, opacity: 1 }}
                       className="text-2xl font-bold text-white"
                     >
-                      {Math.round((calculateROI(selectedBudget) / selectedBudget) * 100)}%
+                      {totalHours}ч
                     </motion.div>
-                    <div className="text-gray-400 text-sm">ROI</div>
+                    <div className="text-gray-400 text-sm">в месяц</div>
                   </div>
                 </div>
               </div>
 
-              {/* Revenue Cards */}
+              {/* Cards */}
               <div className="grid grid-cols-2 gap-4">
                 <div className="bg-gray-800/50 rounded-2xl p-6 border border-gray-700/50 text-center">
-                  <div className="w-8 h-8 text-green-400 mx-auto mb-2 flex items-center justify-center text-2xl font-bold">&#8381;</div>
+                  <div className="w-8 h-8 text-green-400 mx-auto mb-2 flex items-center justify-center text-2xl">🎮</div>
                   <motion.div
-                    key={`monthly-${selectedBudget}-${selectedBusiness}`}
+                    key={`events-${selectedDays}-${selectedType}`}
                     initial={{ scale: 0.8, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
                     className="text-2xl font-bold text-white mb-1"
                   >
-                    {formatRub(calculateMonthlyRevenue(selectedBudget))}
+                    {totalEvents}
                   </motion.div>
-                  <div className="text-gray-400 text-sm">Выручка/мес</div>
+                  <div className="text-gray-400 text-sm">Ивентов</div>
                 </div>
 
                 <div className="bg-gray-800/50 rounded-2xl p-6 border border-gray-700/50 text-center">
-                  <TrendingUp className="w-8 h-8 text-blue-400 mx-auto mb-2" />
+                  <TrendingUp className="w-8 h-8 text-green-400 mx-auto mb-2" />
                   <motion.div
-                    key={`annual-${selectedBudget}-${selectedBusiness}`}
+                    key={`ach-${selectedDays}-${selectedType}`}
                     initial={{ scale: 0.8, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
                     className="text-2xl font-bold text-white mb-1"
                   >
-                    {formatRub(calculateROI(selectedBudget))}
+                    {achievementsUnlocked}
                   </motion.div>
-                  <div className="text-gray-400 text-sm">Выручка/год</div>
+                  <div className="text-gray-400 text-sm">Достижений</div>
                 </div>
               </div>
             </div>

@@ -4,27 +4,27 @@ import { Search, Lightbulb, Rocket } from "lucide-react"
 const steps = [
   {
     number: "01",
-    title: "Анализ и стратегия",
-    description: "Глубоко погружаемся в ваши задачи, исследуем идеи и формируем стратегию для долгосрочного успеха.",
+    title: "Зайди на сервер",
+    description: "Запусти Minecraft и введи адрес сервера play.zerotime.ru. Никакой регистрации — заходишь и сразу в игре!",
     icon: <Search className="w-8 h-8" />,
     mockup: "discovery",
-    gradient: "from-blue-500/20 to-blue-600/10",
+    gradient: "from-green-500/20 to-green-600/10",
   },
   {
     number: "02",
-    title: "Разработка и тесты",
-    description: "Создаем решения под ваши цели и тщательно тестируем их для максимальной надежности.",
+    title: "Выбери режим",
+    description: "Выбери свой режим игры: исследуй мир, сражайся с другими игроками или строй своё королевство.",
     icon: <Lightbulb className="w-8 h-8" />,
     mockup: "development",
-    gradient: "from-purple-500/20 to-purple-600/10",
+    gradient: "from-emerald-500/20 to-emerald-600/10",
   },
   {
     number: "03",
-    title: "Запуск и поддержка",
-    description: "Бесшовно внедряем решение и обеспечиваем его стабильную работу с постоянной поддержкой.",
+    title: "Играй и развивайся",
+    description: "Открывай уникальные механики, собирай достижения и становись частью дружного сообщества ZeroTime.",
     icon: <Rocket className="w-8 h-8" />,
     mockup: "launch",
-    gradient: "from-green-500/20 to-green-600/10",
+    gradient: "from-lime-500/20 to-lime-600/10",
   },
 ]
 
@@ -39,9 +39,9 @@ export default function HowWeWork() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6">Как мы работаем</h2>
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6" id="how-to-play">Как начать играть</h2>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-            Простой и эффективный подход к развитию вашего бренда на высшем уровне.
+            Три простых шага — и ты уже в игре. Никакой сложной настройки!
           </p>
         </motion.div>
 
@@ -125,7 +125,7 @@ export default function HowWeWork() {
                     >
                       <div className="w-full max-w-[200px] space-y-3">
                         <div className="flex items-center justify-between">
-                          <div className="text-xs text-gray-400">Статус</div>
+                          <div className="text-xs text-gray-400">Достижения</div>
                           <motion.div
                             animate={{ rotate: 360 }}
                             transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
@@ -135,19 +135,19 @@ export default function HowWeWork() {
                         <div className="space-y-2">
                           <div className="flex items-center space-x-2">
                             <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                            <div className="text-xs text-gray-300">Безопасность</div>
+                            <div className="text-xs text-gray-300">Первый блок добыт</div>
                           </div>
                           <div className="flex items-center space-x-2">
                             <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                            <div className="text-xs text-gray-300">Эффективность</div>
+                            <div className="text-xs text-gray-300">Дом построен</div>
                           </div>
                           <div className="flex items-center space-x-2">
                             <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                            <div className="text-xs text-gray-300">Скорость</div>
+                            <div className="text-xs text-gray-300">Клан создан</div>
                           </div>
                           <div className="flex items-center space-x-2">
-                            <div className="w-3 h-3 bg-blue-500 rounded-full animate-pulse"></div>
-                            <div className="text-xs text-gray-300">Обновление...</div>
+                            <div className="w-3 h-3 bg-lime-500 rounded-full animate-pulse"></div>
+                            <div className="text-xs text-gray-300">Новое задание...</div>
                           </div>
                         </div>
                       </div>
